@@ -1,5 +1,5 @@
 # Stage 1: Build
-FROM maven:3.9.4-eclipse-temurin-17 AS builder
+FROM maven:3.9.4-openjdk-17 AS builder
 
 WORKDIR /app
 
@@ -14,7 +14,7 @@ COPY backend/src ./src
 RUN mvn clean package -DskipTests
 
 # Stage 2: Runtime
-FROM eclipse-temurin:17-jre-slim
+FROM openjdk:17-jdk-slim
 
 WORKDIR /app
 
@@ -23,6 +23,9 @@ COPY --from=builder /app/target/backend-0.0.1-SNAPSHOT.jar app.jar
 
 # Puerto en el que corre Spring Boot
 EXPOSE 8092
+
+# Variable de entorno para el puerto (Render puede override)
+ENV PORT=8092
 
 # Comando para ejecutar la aplicación
 CMD ["java", "-jar", "app.jar"]
