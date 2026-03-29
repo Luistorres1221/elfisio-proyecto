@@ -1,0 +1,331 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 33% 98%;
+    --foreground: 200 15% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 200 15% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 200 15% 15%;
+
+    /* primary now blue similar to logo */
+    --primary: 216 70% 40%;
+    --primary-foreground: 0 0% 100%;
+
+    /* secondary/muted also shift toward softer blue tints */
+    --secondary: 216 30% 94%;
+    --secondary-foreground: 200 15% 15%;
+
+    --muted: 216 20% 95%;
+    --muted-foreground: 200 10% 50%;
+
+    /* accent uses lighter blue */
+    --accent: 216 50% 80%;
+    --accent-foreground: 216 70% 25%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 216 15% 88%;
+    --input: 216 15% 88%;
+    --ring: 216 70% 40%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  .dark {
+    --background: 200 15% 10%;
+    --foreground: 40 20% 95%;
+    --card: 200 15% 13%;
+    --card-foreground: 40 20% 95%;
+    --popover: 200 15% 13%;
+    --popover-foreground: 40 20% 95%;
+    /* dark mode adjustments to blue palette */
+    --primary: 216 70% 45%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 216 30% 18%;
+    --secondary-foreground: 40 20% 95%;
+    --muted: 216 15% 18%;
+    --muted-foreground: 200 10% 60%;
+    --accent: 216 50% 20%;
+    --accent-foreground: 216 50% 80%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 216 15% 20%;
+    --input: 216 15% 20%;
+    --ring: 216 70% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+@layer utilities {
+  .heading-display {
+    font-family: var(--font-heading);
+    @apply tracking-tight;
+  }
+}
+
+@layer components {
+  .auth-scene::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at top left, rgba(55, 146, 255, 0.18), transparent 30%),
+      radial-gradient(circle at bottom right, rgba(18, 113, 255, 0.22), transparent 32%);
+    pointer-events: none;
+  }
+
+  .auth-bg-orb {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(18px);
+    opacity: 0.5;
+    animation: auth-float 14s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .auth-bg-orb-one {
+    top: 8%;
+    left: -8%;
+    width: 22rem;
+    height: 22rem;
+    background: radial-gradient(circle, rgba(61, 149, 255, 0.42), rgba(61, 149, 255, 0));
+  }
+
+  .auth-bg-orb-two {
+    right: -6%;
+    bottom: 5%;
+    width: 28rem;
+    height: 28rem;
+    background: radial-gradient(circle, rgba(16, 86, 191, 0.4), rgba(16, 86, 191, 0));
+    animation-delay: -6s;
+  }
+
+  .auth-panel {
+    position: relative;
+    animation: auth-fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .auth-panel-visual {
+    animation-delay: 0.08s;
+  }
+
+  .auth-panel-form {
+    animation-delay: 0.18s;
+  }
+
+  .auth-panel-sheen {
+    position: absolute;
+    inset: -20% auto auto -20%;
+    width: 18rem;
+    height: 18rem;
+    border-radius: 9999px;
+    background: radial-gradient(circle, rgba(162, 212, 255, 0.28), rgba(162, 212, 255, 0));
+    animation: auth-breathe 8s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .auth-logo-wrap {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1 / 1;
+  }
+
+  .auth-logo-login {
+    animation: auth-logo-login 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .auth-logo-register {
+    animation: auth-logo-register 1.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .auth-logo-aura,
+  .auth-logo-orbit,
+  .auth-logo-card {
+    position: absolute;
+    border-radius: 9999px;
+  }
+
+  .auth-logo-aura {
+    inset: 12%;
+    background: radial-gradient(circle, rgba(75, 164, 255, 0.42), rgba(75, 164, 255, 0));
+    filter: blur(22px);
+    animation: auth-pulse 5s ease-in-out infinite;
+  }
+
+  .auth-logo-orbit {
+    inset: 4%;
+    border: 1px solid rgba(132, 195, 255, 0.22);
+  }
+
+  .auth-logo-orbit-one {
+    animation: auth-spin 18s linear infinite;
+  }
+
+  .auth-logo-orbit-two {
+    inset: -2%;
+    border-style: dashed;
+    border-color: rgba(132, 195, 255, 0.16);
+    animation: auth-spin-reverse 24s linear infinite;
+  }
+
+  .auth-logo-card {
+    inset: 12%;
+    overflow: hidden;
+    border: 1px solid rgba(130, 197, 255, 0.4);
+    background: linear-gradient(145deg, rgba(8, 16, 34, 0.96), rgba(4, 10, 22, 0.88));
+    box-shadow:
+      0 0 0 1px rgba(81, 170, 255, 0.08),
+      0 25px 70px rgba(2, 9, 27, 0.6),
+      0 0 42px rgba(43, 136, 255, 0.26);
+  }
+
+  @media (max-width: 1023px) {
+    .auth-grid {
+      min-height: auto;
+    }
+
+    .auth-panel-visual {
+      min-height: 26rem;
+    }
+
+    .auth-logo-card {
+      inset: 16%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .auth-bg-orb,
+    .auth-panel,
+    .auth-panel-sheen,
+    .auth-logo-login,
+    .auth-logo-register,
+    .auth-logo-aura,
+    .auth-logo-orbit-one,
+    .auth-logo-orbit-two {
+      animation: none !important;
+    }
+  }
+}
+
+@keyframes auth-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes auth-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -18px, 0) scale(1.06);
+  }
+}
+
+@keyframes auth-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.65;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.9;
+  }
+}
+
+@keyframes auth-logo-login {
+  from {
+    opacity: 0;
+    transform: translateX(-28px) scale(0.9) rotate(-5deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1) rotate(0deg);
+  }
+}
+
+@keyframes auth-logo-register {
+  from {
+    opacity: 0;
+    transform: translateX(28px) scale(0.88) rotate(7deg);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(-8px) scale(1.02) rotate(-2deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1) rotate(0deg);
+  }
+}
+
+@keyframes auth-pulse {
+  0%,
+  100% {
+    transform: scale(0.96);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+@keyframes auth-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes auth-spin-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}

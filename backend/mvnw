@@ -1,0 +1,33 @@
+#!/bin/sh
+
+set -eu
+
+if [ -z "${JAVA_HOME:-}" ] && [ -d "/c/Program Files/Java/jdk-17" ]; then
+  JAVA_HOME="/c/Program Files/Java/jdk-17"
+  export JAVA_HOME
+fi
+
+find_maven() {
+  root="${USERPROFILE:-$HOME}/.m2/wrapper/dists"
+  if [ -d "$root" ]; then
+    find "$root" -name mvn.cmd -o -name mvn 2>/dev/null | sort -r | head -n 1
+    return 0
+  fi
+  command -v mvn || true
+}
+
+MVN_CMD="$(find_maven)"
+home_root="${USERPROFILE:-$HOME}"
+repo_root="${USERPROFILE:-$HOME}/.m2/repository"
+
+if [ -z "$MVN_CMD" ]; then
+  echo "Could not find Maven."
+  echo "Expected a Maven distribution under \$HOME/.m2/wrapper/dists or an available mvn in PATH."
+  exit 1
+fi
+
+if [ -d "$repo_root" ]; then
+  exec "$MVN_CMD" "-Duser.home=$home_root" "-Dmaven.repo.local=$repo_root" "$@"
+fi
+
+exec "$MVN_CMD" "$@"

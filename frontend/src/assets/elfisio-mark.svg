@@ -1,0 +1,37 @@
+<svg width="960" height="960" viewBox="0 0 960 960" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bg" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(480 480) rotate(90) scale(480)">
+      <stop stop-color="#09172B"/>
+      <stop offset="0.6" stop-color="#040913"/>
+      <stop offset="1" stop-color="#010204"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(618 302) rotate(136.11) scale(435.873)">
+      <stop stop-color="#3C97FF" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#3C97FF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ring" x1="112" y1="120" x2="836" y2="842" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#33A0FF"/>
+      <stop offset="1" stop-color="#0066FF"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="323" y1="252" x2="610" y2="515" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#54B2FF"/>
+      <stop offset="1" stop-color="#1271FF"/>
+    </linearGradient>
+  </defs>
+  <circle cx="480" cy="480" r="446" fill="url(#bg)"/>
+  <circle cx="480" cy="480" r="446" fill="url(#glow)"/>
+  <circle cx="480" cy="480" r="446" stroke="url(#ring)" stroke-width="24"/>
+  <path d="M683 172C754 240 802 342 816 455" stroke="#9DD4FF" stroke-opacity="0.22" stroke-width="14" stroke-linecap="round"/>
+  <path d="M697 254L729 211L724 276L781 248L748 303" stroke="#E9F7FF" stroke-opacity="0.2" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M415 254C444 258 460 272 468 296C474 312 489 327 506 334C524 341 540 359 541 383C542 409 526 431 504 440C484 448 468 464 462 485C454 515 430 537 399 540C368 543 339 524 327 493C315 462 294 437 268 420C245 405 232 379 238 351C244 323 269 302 298 300C330 298 354 284 374 261C385 248 399 251 415 254Z" fill="url(#accent)" fill-opacity="0.92"/>
+  <path d="M397 314C411 351 406 380 380 412C360 437 346 468 342 504" stroke="#021120" stroke-opacity="0.28" stroke-width="16" stroke-linecap="round"/>
+  <path d="M299 579H375V613H328V637H432V671H299V579Z" fill="#F8FBFF"/>
+  <path d="M401 579H438V637H542V671H401V579Z" fill="#F8FBFF"/>
+  <path d="M550 579H683V613H587V617H670V648H587V671H550V579Z" fill="#F8FBFF"/>
+  <path d="M695 579H732V671H695V579Z" fill="#F8FBFF"/>
+  <path d="M748 625C748 596.281 771.281 573 800 573H818C846.719 573 870 596.281 870 625C870 653.719 846.719 677 818 677H800C771.281 677 748 653.719 748 625Z" fill="#F8FBFF"/>
+  <path d="M791 625C791 610.088 803.088 598 818 598C832.912 598 845 610.088 845 625C845 639.912 832.912 652 818 652C803.088 652 791 639.912 791 625Z" fill="#1A84FF"/>
+  <text x="480" y="740" text-anchor="middle" fill="#187FFF" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700" letter-spacing="4">
+    REHABILITACION FISICA E INTEGRAL
+  </text>
+</svg>
