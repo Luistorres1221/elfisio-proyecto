@@ -1,0 +1,6 @@
+[project]
+name = "elfisio-proyecto"
+
+[service]
+name = "backend"
+run = "./start.sh"
