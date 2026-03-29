@@ -1,5 +1,5 @@
 # Stage 1: Build
-FROM maven:3.9.4-openjdk-17 AS builder
+FROM maven:3.9-temurin AS builder
 
 WORKDIR /app
 
@@ -14,7 +14,7 @@ COPY backend/src ./src
 RUN mvn clean package -DskipTests
 
 # Stage 2: Runtime
-FROM openjdk:17-jdk-slim
+FROM temurin:17-jre-slim
 
 WORKDIR /app
 
