@@ -1,0 +1,14 @@
+.git
+.github
+.vscode
+node_modules
+frontend/node_modules
+frontend/dist
+frontend/.vercel
+backend/target
+backend/data
+backend/local-run.out
+backend/local-run.err
+*.log
+*.local
+Dockerfile.*
