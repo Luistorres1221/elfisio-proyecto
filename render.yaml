@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: elfisio-backend
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: APP_FRONTEND_URL
+        sync: false
+      - key: APP_CORS_ALLOWED_ORIGINS
+        sync: false
+      - key: JWT_SECRET
+        sync: false
