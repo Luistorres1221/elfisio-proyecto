@@ -18,8 +18,8 @@ WORKDIR /app
 # Copy only the JAR from builder
 COPY --from=builder /app/backend/target/backend-0.0.1-SNAPSHOT.jar /app/app.jar
 
-# Expose port (Railway will override with PORT env var)
-EXPOSE 8092
+# Expose port (Railway assigns 8080 by default)
+EXPOSE 8080
 
 # Run the application
 CMD ["java", "-jar", "/app/app.jar"]
