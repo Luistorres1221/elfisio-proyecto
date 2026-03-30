@@ -2,16 +2,28 @@ package com.fisioterapia.security;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.nio.charset.StandardCharsets;
 import java.security.Key;
+import java.util.Arrays;
 import java.util.Date;
 
 @Component
 public class JwtUtil {
 
-    private final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
-    private final long expirationTime = 86400000; // 24 hours
+    private final Key key;
+    private final long expirationTime;
+
+    public JwtUtil(
+            @Value("${app.jwt.secret}") String secret,
+            @Value("${app.jwt.expiration-ms:86400000}") long expirationTime
+    ) {
+        byte[] keyBytes = secret.getBytes(StandardCharsets.UTF_8);
+        this.key = Keys.hmacShaKeyFor(Arrays.copyOf(keyBytes, 32));
+        this.expirationTime = expirationTime;
+    }
 
     public String generateToken(String username) {
         return Jwts.builder()

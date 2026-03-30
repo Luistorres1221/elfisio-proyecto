@@ -1,6 +1,7 @@
 package com.fisioterapia.security;
 
 import com.fisioterapia.repository.AppUserRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -18,10 +19,18 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Configuration
 @EnableMethodSecurity
 public class SecurityConfig {
+
+    @Value("${app.frontend.url:http://localhost:5173}")
+    private String frontendUrl;
+
+    @Value("${app.cors.allowed-origins:http://localhost:3000,http://localhost:5173,http://localhost:8080}")
+    private String corsAllowedOrigins;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -46,12 +55,12 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(Arrays.asList(
-            "http://localhost:3000",
-            "http://localhost:5173",
-            "http://localhost:8080",
-            "https://elfisiocomco.vercel.app"
-        ));
+        List<String> allowedOrigins = Arrays.stream((corsAllowedOrigins + "," + frontendUrl).split(","))
+                .map(String::trim)
+                .filter(origin -> !origin.isEmpty())
+                .distinct()
+                .collect(Collectors.toList());
+        config.setAllowedOrigins(allowedOrigins);
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
         config.setAllowedHeaders(Arrays.asList("*"));
         config.setExposedHeaders(Arrays.asList("Authorization", "Content-Type"));
