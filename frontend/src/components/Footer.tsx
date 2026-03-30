@@ -8,9 +8,9 @@ const Footer = () => {
   const siteName = settings.siteName || "ELFISIO";
   const companyName = settings.companyName || siteName;
   const logoSrc = settings.logoUrl || "/elfisio-logo.png";
-  const email = settings.companyEmail || "info@fisiovida.com";
+  const email = settings.companyEmail || "info@elfisio.com";
   const phone = settings.companyPhone || "+57 300 123 4567";
-  const address = settings.address || "Calle Principal #123, Ciudad";
+  const address = settings.address || "Calle Principal Cra 66 # 31b-27, Armenia";
   const legalLinks = [
     { label: "Politica de tratamiento de datos", to: "/tratamiento-datos" },
     { label: "Terminos y condiciones", to: "/terminos-condiciones" },
