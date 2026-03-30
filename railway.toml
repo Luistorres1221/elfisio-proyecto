@@ -3,4 +3,11 @@ name = "elfisio-proyecto"
 
 [service]
 name = "backend"
-run = "./start.sh"
+
+[build]
+dockerfile = "Dockerfile"
+context = "."
+
+[deploy]
+startCommand = "java -jar /app/app.jar --server.port=${PORT:-8092}"
+
